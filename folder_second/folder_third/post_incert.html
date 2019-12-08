@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang = “ja”>
+<head>
+    <meta charset = “UFT-8”>
+    <title>投稿作成</title>
+    <link rel="stylesheet" href="../../css/style_post.css">
+</head>
+
+<body>
+    <h1 class="title">投稿作成</h1>
+    <p class="descriot">以下の項目にご記入の上、「送信」ボタンを押してください</p>
+    <form id="sub_form" action = "incert.php" method = "post" autocomplete="off">
+        <!-- <div class="name">
+            <label>ニックネーム</label>
+            <label class="test">必須</label>
+            <input type = "text" name ='name' placeholder="ニックネーム">
+        </div> -->
+        <div class="post">
+            <label>投稿文</label>
+            <label class="test">必須</label>
+            <textarea class="post_area" name="msg" ></textarea>
+        </div>
+        <button type = "submit" class="sub_button">送信</button>
+    </form>
+    </body>
+</html>

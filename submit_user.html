@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang = “ja”>
+<head>
+    <meta charset = “UFT-8”>
+    <title>メンバー登録</title>
+    <link rel="stylesheet" href="css/style_user_reg.css">
+</head>
+
+<body>
+    <!-- ヘッダー部分 -->
+    <h1 class="title">メンバー登録</h1>
+    <p class="descriot">以下の項目にご記入の上、「送信」ボタンを押してください</p>
+    <!-- フォームの設定 -->
+    <form id="sub_form" action = "folder_second/user_registration.php" method = "post" autocomplete="off">
+        <div class="name">
+            <label>ニックネーム</label>
+            <label class="test">必須</label>
+            <input type = "text" name ='name' placeholder="ニックネーム">
+        </div>
+        <div class="mail">
+            <label>mail-address</label>
+            <label class="test">必須</label>
+            <input type = "email" name ='email' placeholder="mail-address">
+        </div>
+        <div class="pass">
+            <label>password</label>
+            <label class="test">必須</label>
+            <input type = "password" name ='pass' minlength="8" placeholder="パスワード">
+        </div>
+        <button type = "submit" class="sub_button">送信</button>
+    </form>
+    </body>
+</html>

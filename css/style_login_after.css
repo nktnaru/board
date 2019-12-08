@@ -1,0 +1,92 @@
+.absolute{
+    position: relative;
+    width:100%;
+}
+
+.title{
+    display: inline-block;
+    text-align: center;
+    width: 100%; 
+    font-size: 75px;
+    font-family: 'HG行書体','MSPゴシック';
+    margin: 10px;
+}
+.post{
+    position: absolute;
+    right: 110px;
+    bottom: 10px;
+    display: inline;
+    text-align: right;
+    font-family: 'Times New Roman','ＭＳ Ｐ明朝','MSPゴシック';
+}
+.logout{
+    position: absolute;
+    right: 30px;
+    bottom: 10px;
+    display: inline;
+    text-align: right;
+    font-family: 'Times New Roman','ＭＳ Ｐ明朝','MSPゴシック';
+}
+
+table{
+    display: block;
+    width: 75%;
+    /* border: 1px black solid; */
+    
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: rgb(226, 224, 221);
+}
+
+.table_name{
+    display: inline-block;
+    /* width: 300px;  */
+    font-size: 15px;
+    /* border: 1px solid black; */
+    font-family: 'Times New Roman','ＭＳ Ｐ明朝','MSPゴシック';
+    padding: 5px;
+    margin-right: 5px;
+    margin-bottom:5px;
+    /* text-align: center; */
+
+}
+.table_time{
+    display: inline-block;
+    font-size: 15px;
+    /* border: 1px solid black; */
+    font-family: 'Times New Roman','ＭＳ Ｐ明朝','MSPゴシック';
+    padding: 5px;
+    margin-bottom:5px;
+    /* text-align: center; */
+}
+
+.table_post{
+    display: block;
+    width:100%;
+    font-size: 20px;
+    /* border: 1px solid black; */
+    font-family: 'Times New Roman','ＭＳ Ｐ明朝','MSPゴシック';
+    padding: 5px;
+    margin-bottom:5px;
+    /* text-align: center; */
+}
+.table_delete{
+    display: inline-block;
+    font-size: 15px;
+    /* border: 1px solid black; */
+    font-family: 'Times New Roman','ＭＳ Ｐ明朝','MSPゴシック';
+    text-align: center;
+    color: red;
+}
+
+.page{
+    display: block;
+    position: absolute;
+    right: 50%;
+}
+.pagging{
+    font-size: 20px;
+    font-family: 'Times New Roman','ＭＳ Ｐ明朝','MSPゴシック';
+}
