@@ -1,14 +1,11 @@
+<!-- 投稿フォームに値が入っているかで条件分岐 -->
 <?php if( empty($_POST['msg'])): ?>
-
 	<?php
 	//エラー変数の初期化
 	$error_name = null;
 	$error_text = null;
 
 	//エラーメッセージの変数への代入
-	// if(empty($_POST['name'])){
-	// 	$error_name = 'ニックネームを入力してください';
-	// };
 	if(empty($_POST['msg'])){
 		$error_msg = '投稿文を入力してください';
 	};
@@ -27,14 +24,6 @@
 		<h1 class="title">投稿作成</h1>
 		<p class="descriot">以下の項目にご記入の上、「送信」ボタンを押してください</p>
 		<form id="sub_form" action = "./incert.php" method = "post" autocomplete="off">
-			<!-- <div class="name">
-				<label>ニックネーム</label>
-				<label class="test">必須</label>
-				<input type = "text" name ='name' placeholder="ニックネーム">
-				<?php //if(!empty($error_name)):?>
-				<p class="caution"><?php //echo $error_name?></p>
-				<?php //endif ?>
-			</div>  -->
 			<div class="post">
 				<label>投稿文</label>
 				<label class="test">必須</label>
@@ -71,9 +60,6 @@
 		) VALUES (
 			'$name', '$date', '$msg'
 		)";
-
-		// SQL実行
-		//db_connect($sql);
 		
 		$res = $dbh->query($sql);
 		echo "接続成功";

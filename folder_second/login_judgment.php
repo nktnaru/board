@@ -15,7 +15,7 @@
         $sql = "SELECT name,pass FROM user where address = :email";
     
         $stmt = $dbh->prepare($sql);
-
+        //sqlの変数部分(:email)に値をバインド
         $stmt->bindValue(':email', $email,PDO::PARAM_STR);
 
         $stmt->execute();

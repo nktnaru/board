@@ -1,5 +1,5 @@
+<!-- ユーザーフォームに記載された値がemptyかどうかで条件分岐 -->
 <?php if(empty($_POST['name']) or empty($_POST['email']) or empty($_POST['pass'])): ?>
-
 <?php
 //エラー変数の初期化
 $error_name = null;
@@ -34,26 +34,29 @@ if(empty($_POST['pass'])){
             <label>ニックネーム</label>
             <label class="test">必須</label>
             <input type = "text" name ='name' placeholder="ニックネーム">
+            <!-- nameのエラーメッセージに値が入っている場合、エラーメッセージを表示 -->
             <?php if(!empty($error_name)):?>
-            <p class="caution"><?php echo $error_name?></p>
-            <?php endif ?>
-        </div>
-        <div class="mail">
-            <label>mail-address</label>
-            <label class="test">必須</label>
-            <input type = "email" name ='email' placeholder="mail-address">
-            <?php if(!empty($error_email)):?>
-            <p class="caution"><?php echo $error_email?></p>
-            <?php endif ?>
-        </div>
-        <div class="pass">
-            <label>password</label>
-            <label class="test">必須</label>
-            <input type = "password" name ='pass' minlength="8" placeholder="パスワード">
-            <?php if(!empty($error_pass)):?>
-            <p class="caution"><?php echo $error_pass?></p>
-            <?php endif ?>
-        </div>
+                <p class="caution"><?php echo $error_name?></p>
+                <?php endif ?>
+            </div>
+            <div class="mail">
+                <label>mail-address</label>
+                <label class="test">必須</label>
+                <input type = "email" name ='email' placeholder="mail-address">
+                <!-- emailのエラーメッセージに値が入っている場合、エラーメッセージを表示 -->
+                <?php if(!empty($error_email)):?>
+                    <p class="caution"><?php echo $error_email?></p>
+                    <?php endif ?>
+                </div>
+                <div class="pass">
+                    <label>password</label>
+                    <label class="test">必須</label>
+                    <input type = "password" name ='pass' minlength="8" placeholder="パスワード">
+                <!-- passのエラーメッセージに値が入っている場合、エラーメッセージを表示 -->
+                <?php if(!empty($error_pass)):?>
+                <p class="caution"><?php echo $error_pass?></p>
+                <?php endif ?>
+            </div>
         <button type = "submit" class="sub_button">送信</button>
     </form>
     </body>

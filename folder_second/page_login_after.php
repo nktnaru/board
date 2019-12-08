@@ -75,12 +75,12 @@
                 </table>
                 <?php endforeach; ?>
                 <div class="page">
-                <?php for($i = 1; $i <= $max_page; $i++): ?> <!--最大ページ数分リンクを作成 -->
-                    <a class="pagging" href="./page_login_after.php?page_id=<?php echo $i ?>"><?php echo $i ?></a>    
-                <?php endfor; ?>
-            </div>
+                    <?php for($i = 1; $i <= $max_page; $i++): ?> <!--最大ページ数分リンクを作成 -->
+                        <a class="pagging" href="./page_login_after.php?page_id=<?php echo $i ?>"><?php echo $i ?></a>    
+                    <?php endfor; ?>
+                </div>
         </body>
     </html>
-    
+
 
 <?php endif;?>

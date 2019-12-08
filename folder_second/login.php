@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+<!-- セッション変数のemailとpassに値が入っているかで条件分岐 -->
 <?php if(empty($_SESSION["email"]) and empty($_SESSION["pass"])):?>
     <!DOCTYPE html>
     <html lang = “ja”>
