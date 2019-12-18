@@ -1,18 +1,22 @@
 <?php
   // データベースへの接続＆idに基づいたデータの削除
-    try{
-        //データベースへの接続
-        $dbh = new PDO("mysql:host=127.0.0.1; dbname=board; charset=utf8", 'test_user', 'Test_pass_2019');
-        //クエリの設定
-        $sql = "DeLETE FROM contents WHERE id = :id";
-        //prepareへのクエリの設置
-        $stmt = $dbh->prepare($sql);
-        //クエリの実効
-        $stmt->execute(array(':id' => $_GET["id"]));
-
-    }catch (Exception $e) {
-        echo 'エラーが発生しました。:' . $e->getMessage();
-  }
+  try{
+    //データベースへの接続
+    $dbh = new PDO("mysql:host=127.0.0.1; dbname=board; charset=utf8", 'test_user', 'Test_pass_2019',array(PDO::ATTR_EMULATE_PREPARES => false));
+    //クエリの設定
+    $sql = "DeLETE FROM contents WHERE id = :id";
+    //prepareへのクエリの設置
+    $stmt = $dbh->prepare($sql);
+    //sql文へ値のバインド
+    $stmt->bindValue(':id', $_GET["id"],PDO::PARAM_STR);
+    //実効
+    $stmt->execute();
+    
+    //クエリの実効
+    //$stmt->execute(array(':id' => $_GET["id"]));
+  }catch (Exception $e) {
+    echo 'エラーが発生しました。:' . $e->getMessage();
+}
 
   $dbh = null;
 

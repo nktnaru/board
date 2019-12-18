@@ -3,14 +3,14 @@
     session_start();
 
     //postで送られたメールアドレスを変数に格納
-    $pass_sub = $_POST["pass"];
-    $email = $_POST["email"];
+    $pass_sub = htmlspecialchars($_POST["pass"],ENT_QUOTES|ENT_HTML5, "UTF-8");
+    $email = htmlspecialchars($_POST["email"],ENT_QUOTES|ENT_HTML5, "UTF-8");
 
     
     //データベースとの接続＆パスワードの抽出
     try {
     
-        $dbh = new PDO("mysql:host=127.0.0.1; dbname=board; charset=utf8", 'test_user', 'Test_pass_2019');      
+        $dbh = new PDO("mysql:host=127.0.0.1; dbname=board; charset=utf8", 'test_user', 'Test_pass_2019',array(PDO::ATTR_EMULATE_PREPARES => false));      
     
         $sql = "SELECT name,pass FROM user where address = :email";
     

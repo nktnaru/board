@@ -64,43 +64,58 @@ if(empty($_POST['pass'])){
 <?php  else: ?>
   <?php
 
-      // 変数の初期化 & 日時の取得
-      $sql = null;
-      $res = null;
-      $dbh = null;
+    // 変数の初期化 & 日時の取得
+    $sql = null;
+    $res = null;
+    $dbh = null;
 
-      //変数の入れ込み
-      $name = $_POST['name'];
-      $email = $_POST['email'];
-      $hash_pass = password_hash($_POST['pass'],PASSWORD_DEFAULT);
+    //変数の入れ込み
+    $name = htmlspecialchars($_POST['name'], ENT_QUOTES|ENT_HTML5, "UTF-8");
+    $email = htmlspecialchars($_POST['email'], ENT_QUOTES|ENT_HTML5, "UTF-8");
+    $hash_pass = password_hash(htmlspecialchars($_POST['pass'], ENT_QUOTES|ENT_HTML5, "UTF-8"),PASSWORD_DEFAULT);
 
-      //echo $name;
-      //echo $email;
-      //echo $hash_pass;
+    //echo $name;
+    //echo $email;
+    //echo $hash_pass;
 
-      try {
-          // DBへ接続
-          $dbh = new PDO("mysql:host=127.0.0.1; dbname=board; charset=utf8", 'test_user', 'Test_pass_2019');
-          
-          // SQL作成
-          $sql = "INSERT INTO user (
-              name, address, pass 
-          ) VALUES (
-              '$name', '$email', '$hash_pass'
-          )";
+    try {
+        // DBへ接続
+        $dbh = new PDO("mysql:host=127.0.0.1; dbname=board; charset=utf8", 'test_user', 'Test_pass_2019',array(PDO::ATTR_EMULATE_PREPARES => false));
+        
+        // SQL作成(変更前)
+        //   $sql = "INSERT INTO user (
+        //       name, address, pass 
+        //   ) VALUES (
+        //       '$name', '$email', '$hash_pass'
+        //   )";
+        // $dbh->query($sql);
 
-          $dbh->query($sql);
+        //sql作成(変更後)
+        $sql = "INSERT INTO user (
+            name, address, pass 
+        ) VALUES (
+            :name, :email, :pass
+        )";
+        //sqlの準備
+        $stmt = $dbh->prepare($sql);
+        //sql文へ値のバインド
+        $stmt->bindValue(':name', $name,PDO::PARAM_STR);
+        $stmt->bindValue(':email', $email,PDO::PARAM_STR);
+        $stmt->bindValue(':pass', $hash_pass,PDO::PARAM_STR);
+        //sqlの実効
+        $stmt->execute();
 
-          // SQL実行
-          // db_connect($sql);
-          echo "接続成功";
-          // $res = $dbh->query($sql);
+        // SQL実行
+        // db_connect($sql);
+        echo "接続成功";
+        // $res = $dbh->query($sql);
 
-      } catch(PDOException $e) {
-          echo "接続失敗";
-          echo $e->getMessage();
-          die();
-      }
+    } catch(PDOException $e) {
+        echo "接続失敗";
+        echo $e->getMessage();
+        die();
+    }
+
 
       // 接続を閉じる
       $dbh = null;
