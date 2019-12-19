@@ -1,32 +1,36 @@
 <?php
     //session開始
     session_start();
-
+    require_once './../connect_db.php';
     //postで送られたメールアドレスを変数に格納
     $pass_sub = htmlspecialchars($_POST["pass"],ENT_QUOTES|ENT_HTML5, "UTF-8");
     $email = htmlspecialchars($_POST["email"],ENT_QUOTES|ENT_HTML5, "UTF-8");
 
     
     //データベースとの接続＆パスワードの抽出
-    try {
+    // try {
     
-        $dbh = new PDO("mysql:host=127.0.0.1; dbname=board; charset=utf8", 'test_user', 'Test_pass_2019',array(PDO::ATTR_EMULATE_PREPARES => false));      
+    //     $dbh = new PDO("mysql:host=127.0.0.1; dbname=board; charset=utf8", 'test_user', 'Test_pass_2019',array(PDO::ATTR_EMULATE_PREPARES => false));      
     
-        $sql = "SELECT name,pass FROM user where address = :email";
+    //     $sql = "SELECT name,pass FROM user where address = :email";
     
-        $stmt = $dbh->prepare($sql);
-        //sqlの変数部分(:email)に値をバインド
-        $stmt->bindValue(':email', $email,PDO::PARAM_STR);
+    //     $stmt = $dbh->prepare($sql);
+    //     //sqlの変数部分(:email)に値をバインド
+    //     $stmt->bindValue(':email', $email,PDO::PARAM_STR);
 
-        $stmt->execute();
+    //     $stmt->execute();
     
-        $result = 0;
+    //     $result = 0;
     
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC); //二重の配列になっている
+    //     $result = $stmt->fetchAll(PDO::FETCH_ASSOC); //二重の配列になっている
     
-    } catch (Exception $e) {
-              echo 'エラーが発生しました。:' . $e->getMessage();
-    }
+    // } catch (Exception $e) {
+    //           echo 'エラーが発生しました。:' . $e->getMessage();
+    // }
+
+    $obj = new connet;
+    $sql = "SELECT name,pass FROM user where address = :email";
+    $result = $obj->select_log_judg($sql,$email);
     
     //ニックネーム・パスワードを変数に入れ込み
     $result_2 = $result[0];

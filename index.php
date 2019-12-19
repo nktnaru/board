@@ -1,22 +1,28 @@
 <?php
+require_once './connect_db.php';
 //ページ内の表示数
 define('MAX','4');
 //データベースとの接続＆投稿コンテントの取り出し
-try {
-    //データベースへの接続
-    $dbh = new PDO("mysql:host=127.0.0.1; dbname=board; charset=utf8", 'test_user', 'Test_pass_2019');      
-    //sql
-    $sql = "SELECT * FROM contents";
-    //queryの実効
-    $stmt = $dbh->query($sql);
+// try {
+//     //データベースへの接続
+//     $dbh = new PDO("mysql:host=127.0.0.1; dbname=board; charset=utf8", 'test_user', 'Test_pass_2019');      
+//     //sql
+//     $sql = "SELECT * FROM contents";
+//     //queryの実効
+//     $stmt = $dbh->query($sql);
 
-    $result = 0;
+//     $result = 0;
 
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-} catch (Exception $e) {
-          echo 'エラーが発生しました。:' . $e->getMessage();
-}
+// } catch (Exception $e) {
+//           echo 'エラーが発生しました。:' . $e->getMessage();
+// }
+
+// 新規追加(関数のテスト)
+$obj = new connet;
+$sql = "SELECT * FROM contents";
+$result = $obj->select($sql);
 
 //resultの配列数(contentの数)を取得
 $contents_num = count($result);

@@ -78,62 +78,63 @@ if(empty($_POST['pass'])){
     //echo $email;
     //echo $hash_pass;
 
-    try {
-        // DBへ接続
-        $dbh = new PDO("mysql:host=127.0.0.1; dbname=board; charset=utf8", 'test_user', 'Test_pass_2019',array(PDO::ATTR_EMULATE_PREPARES => false));
-        
-        // SQL作成(変更前)
-        //   $sql = "INSERT INTO user (
-        //       name, address, pass 
-        //   ) VALUES (
-        //       '$name', '$email', '$hash_pass'
-        //   )";
-        // $dbh->query($sql);
+    //関数化前(2019/12/19)
+    // try {
+    //     // DBへ接続
+    //     $dbh = new PDO("mysql:host=127.0.0.1; dbname=board; charset=utf8", 'test_user', 'Test_pass_2019',array(PDO::ATTR_EMULATE_PREPARES => false));
 
-        //sql作成(変更後)
-        $sql = "INSERT INTO user (
-            name, address, pass 
-        ) VALUES (
-            :name, :email, :pass
-        )";
-        //sqlの準備
-        $stmt = $dbh->prepare($sql);
-        //sql文へ値のバインド
-        $stmt->bindValue(':name', $name,PDO::PARAM_STR);
-        $stmt->bindValue(':email', $email,PDO::PARAM_STR);
-        $stmt->bindValue(':pass', $hash_pass,PDO::PARAM_STR);
-        //sqlの実効
-        $stmt->execute();
+    //     //sql作成(変更後)
+    //     $sql = "INSERT INTO user (
+    //         name, address, pass 
+    //     ) VALUES (
+    //         :name, :email, :pass
+    //     )";
+    //     //sqlの準備
+    //     $stmt = $dbh->prepare($sql);
+    //     //sql文へ値のバインド
+    //     $stmt->bindValue(':name', $name,PDO::PARAM_STR);
+    //     $stmt->bindValue(':email', $email,PDO::PARAM_STR);
+    //     $stmt->bindValue(':pass', $hash_pass,PDO::PARAM_STR);
+    //     //sqlの実効
+    //     $stmt->execute();
 
-        // SQL実行
-        // db_connect($sql);
-        echo "接続成功";
-        // $res = $dbh->query($sql);
+    //     // SQL実行
+    //     // db_connect($sql);
+    //     echo "接続成功";
+    //     // $res = $dbh->query($sql);
 
-    } catch(PDOException $e) {
-        echo "接続失敗";
-        echo $e->getMessage();
-        die();
-    }
+    // } catch(PDOException $e) {
+    //     echo "接続失敗";
+    //     echo $e->getMessage();
+    //     die();
+    // }
+    // 接続を閉じる
+    //$dbh = null;
 
-
-      // 接続を閉じる
-      $dbh = null;
-
-  ?>
-  <!DOCTYPE html>
-  <html>
-  <head>
-      <meta charset="utf-8">
-      <title>登録完了</title>
-  </head>
-  <body>
-  <P>登録完了</p>          
-  <p>
-      <a href="../index.php">投稿一覧へ</a>
-  </p> 
-  </body>
-  </html>
+    //DB接続など関数化
+    require_once './../connect_db.php';
+    $obj = new connet;
+    $sql = $sql = "INSERT INTO user (
+                name, address, pass 
+                ) VALUES (
+                :name, :email, :pass
+                )";
+    $obj->incert_reg($sql,$name,$email,$hash_pass);
+    
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>登録完了</title>
+</head>
+<body>
+<P>登録完了</p>          
+<p>
+    <a href="../index.php">投稿一覧へ</a>
+</p> 
+</body>
+</html>
 
 <?php endif; ?>
 

@@ -8,22 +8,27 @@
 
 <?php elseif(!empty($_SESSION["id"])):?>
     <?php
+        require_once './../connect_db.php';
         define('MAX','4');
         $name = $_SESSION["name"];
         //データベース接続&掲示板のコンテンツの取り出し
-        try {
+        // try {
     
-            $dbh = new PDO("mysql:host=127.0.0.1; dbname=board; charset=utf8", 'test_user', 'Test_pass_2019');      
+        //     $dbh = new PDO("mysql:host=127.0.0.1; dbname=board; charset=utf8", 'test_user', 'Test_pass_2019');      
     
-            // echo '接続完了';
-            $sql = "SELECT * FROM contents";
-            $stmt = $dbh->query($sql);
-            $result = 0;
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //     // echo '接続完了';
+        //     $sql = "SELECT * FROM contents";
+        //     $stmt = $dbh->query($sql);
+        //     $result = 0;
+        //     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
-        } catch (Exception $e) {
-                echo 'エラーが発生しました。:' . $e->getMessage();
-        };
+        // } catch (Exception $e) {
+        //         echo 'エラーが発生しました。:' . $e->getMessage();
+        // };
+
+        $obj = new connet;
+        $sql = "SELECT * FROM contents";
+        $result = $obj->select($sql);
 
         $contents_num = count($result);
         $max_page = ceil($contents_num / MAX);

@@ -50,34 +50,44 @@
 	//$name = htmlspecialchars($_POST['name'],ENT_QUOTES,"UTF-8");
 	$name = $_SESSION["name"];
 	$msg = htmlspecialchars($_POST['msg'],ENT_QUOTES|ENT_HTML5, "UTF-8");
-	try {
-		// DBへ接続
-		$dbh = new PDO("mysql:host=127.0.0.1; dbname=board; charset=utf8", 'test_user', 'Test_pass_2019',array(PDO::ATTR_EMULATE_PREPARES => false));
-		
-		// SQL作成
-		$sql = "INSERT INTO contents (
-			name, post_datetime, post_sentence
-		) VALUES (
-			'$name', '$date', :msg
-		)";
-		//クエリの準備
-		$stmt = $dbh ->prepare($sql);
-		//sql文への値のバインド
-		$stmt->bindValue(':msg',$msg,PDO::PARAM_STR);
-		//sqlの実効
-		$stmt->execute();
-		
-		// $res = $dbh->query($sql);
-		//echo "接続成功";
 
-	} catch(PDOException $e) {
-		echo "接続失敗";
-		echo $e->getMessage();
-		die();
-	}
+	//関数化前(DB接続べた書き)
+	// try {
+	// 	// DBへ接続
+	// 	$dbh = new PDO("mysql:host=127.0.0.1; dbname=board; charset=utf8", 'test_user', 'Test_pass_2019',array(PDO::ATTR_EMULATE_PREPARES => false));
+		
+	// 	// SQL作成
+	// 	$sql = "INSERT INTO contents (
+	// 		name, post_datetime, post_sentence
+	// 	) VALUES (
+	// 		'$name', '$date', :msg
+	// 	)";
+	// 	//クエリの準備
+	// 	$stmt = $dbh ->prepare($sql);
+	// 	//sql文への値のバインド
+	// 	$stmt->bindValue(':msg',$msg,PDO::PARAM_STR);
+	// 	//sqlの実効
+	// 	$stmt->execute();
+		
+	// 	// $res = $dbh->query($sql);
+	// 	//echo "接続成功";
 
-	// 接続を閉じる
-	$dbh = null;
+	// } catch(PDOException $e) {
+	// 	echo "接続失敗";
+	// 	echo $e->getMessage();
+	// 	die();
+	// }
+
+	// // 接続を閉じる
+	// $dbh = null;
+	require_once './../../connect_db.php';
+	$obj = new connet;
+	$sql = $sql = "INSERT INTO contents (
+		 		name, post_datetime, post_sentence
+		 		) VALUES (
+		 		'$name', '$date', :msg
+		 		)";
+	$result = $obj->incert_msg($sql,$msg);
 
 	?>
 
