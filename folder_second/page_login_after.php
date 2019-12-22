@@ -9,7 +9,7 @@
 <?php elseif(!empty($_SESSION["id"])):?>
     <?php
         require_once './../connect_db.php';
-        define('MAX','4');
+        define('MAX','5');
         $name = $_SESSION["name"];
         //データベース接続&掲示板のコンテンツの取り出し
         // try {
@@ -50,6 +50,7 @@
             </head>
 
         <body>
+            <div class = "back">
             <div class="absolute">
                 <h1 class="title">掲示板</h1>
                 <a href="./folder_third/post_incert.html" class="post">新規投稿</a>
@@ -60,11 +61,11 @@
                 <table>
                     <tbody class="table_type">
                         <tr class="table_name">
-                            <th>名前</th>
+                            <th>名前></th>
                             <td><?php echo $row["name"] ?></td>
                         </tr>
                         <tr class="table_time">
-                            <th>時間</th>
+                            <th>時間></th>
                             <td><?php echo $row["post_datetime"] ?></td>
                         </tr>
                         <tr class="table_post">
@@ -84,6 +85,7 @@
                         <a class="pagging" href="./page_login_after.php?page_id=<?php echo $i ?>"><?php echo $i ?></a>    
                     <?php endfor; ?>
                 </div>
+            </div>    
         </body>
     </html>
 

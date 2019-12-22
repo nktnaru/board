@@ -6,8 +6,9 @@
 .title{
     display: inline-block;
     text-align: center;
-    width: 100%; 
+    width: 99%; 
     font-size: 75px;
+    color: white;
     font-family: 'HG行書体','MSPゴシック';
     margin: 10px;
 }
@@ -19,6 +20,7 @@
     text-align: right;
     font-family: 'Times New Roman','ＭＳ Ｐ明朝','MSPゴシック';
     text-decoration: none;
+    color: white;
 }
 
 .reg{
@@ -29,18 +31,20 @@
     text-align: right;
     font-family: 'Times New Roman','ＭＳ Ｐ明朝','MSPゴシック';
     text-decoration: none;
+    color: white;
 }
 
 table{
     display: block;
-    width: 75%;
+    width: 70%;
     /* border: 1px black solid; */
     
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 10px;
     border-radius: 10px;
-    background-color: rgb(226, 224, 221);
+    /* background-color: rgb(226, 224, 221); */
+    color: white;
 }
 
 .table_name{
@@ -53,6 +57,7 @@ table{
     margin-right: 5px;
     margin-bottom:5px;
     /* text-align: center; */
+    color: white;
 
 }
 .table_time{
@@ -63,6 +68,7 @@ table{
     padding: 5px;
     margin-bottom:5px;
     /* text-align: center; */
+    color: white;
 }
 
 .table_post{
@@ -74,6 +80,7 @@ table{
     padding: 5px;
     margin-bottom:5px;
     /* text-align: center; */
+    color: white;
 }
 .table_delete{
     display: block;
@@ -85,13 +92,26 @@ table{
     text-align: center;
     color: red;
 }
+.back{
+    /* display:block; */
+    position: relative;
+    width: 80%;
+    height: 100%;
+    border: solid 10px rgb(165, 89, 2);
+    background-color: rgb(60, 100, 80);
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .page{
-    display: block;
-    position: absolute;
-    right: 50%;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
 }
+
 .pagging{
     font-size: 20px;
     font-family: 'Times New Roman','ＭＳ Ｐ明朝','MSPゴシック';
+    color: white;
+    text-decoration: none;
 }
